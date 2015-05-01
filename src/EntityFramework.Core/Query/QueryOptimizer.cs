@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Microsoft.Data.Entity.Extensions.Internal;
 using Microsoft.Data.Entity.Utilities;
 using Remotion.Linq;
 using Remotion.Linq.Clauses;
@@ -76,7 +77,14 @@ namespace Microsoft.Data.Entity.Query
             {
                 var innerMainFromClause = subQueryExpression.QueryModel.MainFromClause;
 
+                var outerItemName = fromClause.ItemName;
                 CopyFromClauseData(innerMainFromClause, fromClause);
+
+                if (innerMainFromClause.ItemName.IsGeneratedName()
+                    && !outerItemName.IsGeneratedName())
+                {
+                    fromClause.ItemName = outerItemName;
+                }
 
                 var innerSelectorMapping = new QuerySourceMapping();
 

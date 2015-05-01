@@ -7,6 +7,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
+using Microsoft.Data.Entity.Extensions.Internal;
 using Microsoft.Data.Entity.Query;
 using Microsoft.Data.Entity.Query.Annotations;
 using Microsoft.Data.Entity.Query.ExpressionTreeVisitors;
@@ -79,7 +80,7 @@ namespace Microsoft.Data.Entity.Relational.Query.ExpressionTreeVisitors
             var selectExpression = new SelectExpression();
             var tableName = QueryModelVisitor.QueryCompilationContext.GetTableName(entityType);
 
-            var alias = QuerySource.ItemName.StartsWith("<generated>_")
+            var alias = QuerySource.ItemName.IsGeneratedName()
                 ? tableName[0].ToString().ToLower()
                 : QuerySource.ItemName;
 

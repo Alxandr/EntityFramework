@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="ChangeTracking\ChangeTrackerFactory.cs" />
     <Compile Include="ChangeTracking\IChangeTrackerFactory.cs" />
+    <Compile Include="Extensions\Internal\SharedStringExtensions.cs" />
     <Compile Include="Metadata\Builders\CollectionNavigationBuilder.cs" />
     <Compile Include="Metadata\Builders\CollectionNavigationBuilder`.cs" />
     <Compile Include="Metadata\Builders\EntityTypeBuilder.cs" />
